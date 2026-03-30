@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player_1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/floor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/player_1.gd" type="Script" id=5]
-[ext_resource path="res://scenes/goal_trigger_player_1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sprites/160x250_sprite_trigger.png" type="Texture" id=6]
 [ext_resource path="res://scenes/goal_trigger_player_2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/player_2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/goal_trigger_player_1.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 81, 128.5 )
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 676, 428 )
@@ -90,8 +94,17 @@ position = Vector2( -206, 294 )
 [node name="StaticBody2D10" parent="." instance=ExtResource( 3 )]
 position = Vector2( 523, -342 )
 
-[node name="Area2D" parent="." instance=ExtResource( 6 )]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -978, -7 )
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+texture = ExtResource( 6 )
+flip_h = true
 
 [node name="Area2D2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 343, -1 )
@@ -105,3 +118,5 @@ position = Vector2( -188, 211 )
 
 [node name="StaticBody2D6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 66, 211 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

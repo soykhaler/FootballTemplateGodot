@@ -17,10 +17,10 @@ extents = Vector2( 81, 128.5 )
 position = Vector2( 676, 428 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -2474.0
-margin_top = -1666.0
-margin_right = 2350.0
-margin_bottom = 1037.0
+margin_left = -2285.0
+margin_top = -1664.0
+margin_right = 2539.0
+margin_bottom = 1039.0
 color = Color( 0.352941, 0.811765, 0.933333, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
